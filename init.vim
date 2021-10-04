@@ -15,6 +15,8 @@ Plug 'honza/vim-snippets'
 Plug 'preservim/nerdtree'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
@@ -28,7 +30,7 @@ call plug#end()
 
 colorscheme gruvbox
 set background=dark
-
+set wildignore+=*/node_modules/*,*/coverage/*
 set hidden
 set number
 set relativenumber
@@ -44,7 +46,7 @@ nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>ot :tabnew<cr>
 
 nnoremap <leader>oi ooi<esc>
-nnoremap <c-p> :FZF<cr>
+nnoremap <c-p> :GFiles<cr>
 nnoremap <c-f> :Ag<space>
 
 " enable ncm2 for all buffers
@@ -116,3 +118,18 @@ let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage float
 let g:lazygit_use_neovim_remote = 1 " fallback to 0 if neovim-remote is not installed
 
 nnoremap <silent> <leader>gg :LazyGit<CR>
+
+
+" Telescope
+nnoremap <leader>ff :Telescope git_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+"nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+"nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+
